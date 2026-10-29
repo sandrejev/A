@@ -1,0 +1,8 @@
+# Example episode script. Run:
+#   python narrate.py example_script.txt --voice narrator=voices/narrator.wav --voice kiki=voices/kiki.wav --out episode1
+narrator: Hello everyone, and welcome back to the channel!
+kiki: Hi! Today we are going to build something really cool.
+narrator: That's right. We are making a robot out of cardboard, tape, and a lot of patience.
+
+kiki: Step one. Find the biggest box in the house. Don't tell Mom.
+narrator: Kiki!

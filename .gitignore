@@ -1,0 +1,15 @@
+# Personal voice samples and generated audio stay on your computer
+voice/voices/
+voice/*.wav
+voice/*.srt
+voice/*_lines/
+voice/.venv/
+
+# Character files and recordings (large; keep them in a cloud drive instead)
+*.vroid
+*.mp4
+*.webm
+*.mov
+
+__pycache__/
+.DS_Store

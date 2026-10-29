@@ -1,0 +1,6 @@
+# Use Python 3.11 (3.10-3.12 also fine).
+# NVIDIA GPU on Windows/Linux: install PyTorch with CUDA FIRST, then this file:
+#   pip install torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+# Mac (Apple Silicon) and CPU-only: just install this file.
+chatterbox-tts==0.1.7
+soundfile

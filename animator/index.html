@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VTuber Animator</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.185.1/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.185.1/examples/jsm/",
+      "@pixiv/three-vrm": "https://cdn.jsdelivr.net/npm/@pixiv/three-vrm@3.5.5/lib/three-vrm.module.min.js",
+      "kalidokit": "https://cdn.jsdelivr.net/npm/kalidokit@1.1.5/dist/kalidokit.es.js",
+      "@mediapipe/tasks-vision": "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.1.0/vision_bundle.mjs"
+    }
+  }
+  </script>
+</head>
+<body>
+  <aside id="panel">
+    <h1>VTuber Animator</h1>
+
+    <section>
+      <h2>1 · Character</h2>
+      <label class="file">Load .vrm model<input id="vrmFile" type="file" accept=".vrm" /></label>
+      <button id="sampleBtn">Use sample character</button>
+    </section>
+
+    <section>
+      <h2>2 · Motion</h2>
+      <button id="webcamBtn">Start webcam</button>
+      <label class="file">Use recorded video<input id="videoFile" type="file" accept="video/*" /></label>
+      <label><input id="trackFace" type="checkbox" checked /> Track face &amp; head</label>
+      <label><input id="trackBody" type="checkbox" checked /> Track arms &amp; upper body</label>
+      <label><input id="trackLegs" type="checkbox" /> Track legs (full body in frame)</label>
+      <label><input id="showSource" type="checkbox" checked /> Show source video</label>
+      <label>Smoothing <input id="smoothing" type="range" min="0.05" max="0.9" step="0.05" value="0.35" /></label>
+    </section>
+
+    <section>
+      <h2>3 · Mouth / lip sync</h2>
+      <select id="lipSource">
+        <option value="face">From face tracking</option>
+        <option value="narration">From narration audio file</option>
+        <option value="mic">From microphone</option>
+      </select>
+      <label class="file">Narration audio<input id="audioFile" type="file" accept="audio/*" /></label>
+      <label><input id="videoAudio" type="checkbox" checked /> Include sound from recorded video</label>
+    </section>
+
+    <section>
+      <h2>4 · Look</h2>
+      <label>Background <input id="bgColor" type="color" value="#00ff00" /></label>
+      <label>Size
+        <select id="resolution">
+          <option value="1920x1080">1920×1080 (YouTube)</option>
+          <option value="1280x720">1280×720</option>
+          <option value="1080x1920">1080×1920 (Shorts)</option>
+        </select>
+      </label>
+      <label>Framing
+        <select id="framing">
+          <option value="bust">Upper body</option>
+          <option value="face">Face close-up</option>
+          <option value="full">Full body</option>
+        </select>
+      </label>
+      <label><input id="lookAtCam" type="checkbox" checked /> Eyes look at the viewer</label>
+    </section>
+
+    <section>
+      <h2>5 · Record</h2>
+      <button id="recordBtn">● Start recording</button>
+      <button id="recordVideoBtn" disabled>Record whole video file</button>
+      <p class="hint">Recording saves a video file with your background color, ready to key out in your editor.</p>
+    </section>
+
+    <pre id="log"></pre>
+  </aside>
+
+  <main id="stage">
+    <canvas id="canvas"></canvas>
+    <video id="sourceVideo" playsinline></video>
+    <div id="recDot" hidden>● REC</div>
+  </main>
+
+  <audio id="narration"></audio>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
